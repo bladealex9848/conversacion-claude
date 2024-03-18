@@ -5,6 +5,9 @@ import os
 from colorama import Fore, Style
 import textwrap
 
+# Establacer un arreglo de modelos
+models = ["claude-3-opus-20240229", "claude-3-sonnet-20240229", "claude-3-haiku-20240307"]
+
 # Conversation class to manage the conversation with Claude
 # Clase Conversation para manejar la conversación con Claude
 class Conversation:
@@ -27,7 +30,8 @@ class Conversation:
     def send_message(self, message):
         self.add_message("user", message)
         response = self.client.messages.create(
-            model="claude-3-sonnet-20240229",
+            # Seleccionar el modelo de Claude a utilizar. Los modelos disponibles son: "claude-3-opus-20240229", "claude-3-sonnet-20240229", "claude-3-haiku-20240307". Por ejemplo, para seleccionar el modelo "claude-3-opus-20240229", se debe cambiar el valor de la variable model a models[0], es decir, model=models[0]. Y para seleccionar el modelo "claude-3-sonnet-20240229", se debe cambiar el valor de la variable model a models[1], es decir, model=models[1]. Y para seleccionar el modelo "claude-3-haiku-20240307", se debe cambiar el valor de la variable model a models[2], es decir, model=models[2].            
+            model=models[2],
             max_tokens=4096,
             messages=self.get_history()
         )
